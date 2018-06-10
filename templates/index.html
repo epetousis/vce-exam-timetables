@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>VCE Exam Timetables</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <!-- Select2 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/select2-bootstrap.min.css" type="text/css" />
+    <!-- Select2 Bootstrap 4 fixes -->
+    <style>
+        .select2-selection {
+            width: 100%;
+        }
+
+        .select2-search__field {
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <h1>VCE Exam Timetables</h1>
+        </div>
+        <div class="row h-100 justify-content-center align-items-center">
+            <p>download your subjects today!!</p>
+        </div>
+        <div class="row h-100 justify-content-center align-items-center">
+            <ol>
+                <li>enter your subjects</li>
+                <li>tap create</li>
+                <li>watch as vce magically destroys your life</li>
+            </ol>
+        </div>
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="input-group col-8 col-lg-6">
+                <select class="form-control subject-selection" name="states[]" multiple="multiple">
+                    {% for exam, value in exams.items() %}
+                    <option value="{{ value }}">{{ exam }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <button type="button" onClick="generateGitIgnore()" class="btn btn-primary-outline">Create</button>
+                </div>
+            </div>
+        </div>
+        <div class="row h-100 justify-content-center align-items-center">
+            <ul>
+                <li>this doesn't work in facebook/fb messenger. tap open in safari/web browser.</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS, then Select2 JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        $.fn.select2.defaults.set("theme", "bootstrap");
+        $(document).ready(function () {
+            $(".subject-selection").select2();
+        });
+
+        // This was stolen from the gitignore.io person
+        // sorry fren ily
+        function generateGitIgnore() {
+            const searchString = $(".subject-selection").map(function () { return $(this).val(); }).get().join(',');
+            const searchLength = searchString.length;
+            if (searchLength > 0) {
+                const files = searchString.replace(/^,/, '');
+                const uriEncodedFiles = encodeURIComponent(files);
+                window.location = `/api/${uriEncodedFiles}`;
+            }
+        }
+    </script>
+</body>
+
+</html>
