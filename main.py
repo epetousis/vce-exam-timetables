@@ -1,5 +1,5 @@
 from flask import Flask, Response, render_template, send_from_directory
-from parser.exam import Exam
+from exam import Exam
 from icalendar import Calendar, Event
 from datetime import datetime
 import dateutil.parser
