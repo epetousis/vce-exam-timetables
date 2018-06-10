@@ -18,6 +18,8 @@ def setup_client_exam_values(exams):
             pieces = exam.split(" Examination")
             subject_name = pieces[0]
             exam_values[subject_name] = subject_name + "*"
+        elif "GAT" in exam:
+            continue
         else:
             exam_values[exam] = exam
     
@@ -55,6 +57,8 @@ def send_css(path):
 @app.route("/api/<subject_string>")
 def api(subject_string):
     subjects = subject_string.split(",")
+    # Append GAT
+    subjects.append("General Achievement Test (GAT)")
     wildcard_subjects = [subject.strip("*") for subject in subjects if subject.endswith("*")]
     matched_exams = [exam for exam in exams if exam.name in subjects]
     matched_wildcard_exams = [exam for exam in exams if exam.name.startswith(tuple(wildcard_subjects))]
