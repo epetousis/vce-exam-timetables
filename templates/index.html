@@ -23,40 +23,53 @@
         .select2-search__field {
             width: 100% !important;
         }
+
+        .unsucky-list {
+            list-style-position: inside; padding-left: 0px;
+        }
+
+        /* This fixes some weird flexbox bug. Don't ask. */
+        .input-group {
+            display: -webkit-box !important;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container h-100">
+    <div class="container" style="height: 100vh;">
         <div class="row h-100 justify-content-center align-items-center">
-            <h1>VCE Exam Timetables</h1>
-        </div>
-        <div class="row h-100 justify-content-center align-items-center">
-            <p>download your subjects today!!</p>
-        </div>
-        <div class="row h-100 justify-content-center align-items-center">
-            <ol>
-                <li>enter your subjects</li>
-                <li>tap create</li>
-                <li>watch as vce magically destroys your life</li>
-            </ol>
-        </div>
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="input-group col-8 col-lg-6">
-                <select class="form-control subject-selection" name="states[]" multiple="multiple">
-                    {% for exam, value in exams.items() %}
-                    <option value="{{ value }}">{{ exam }}</option>
-                    {% endfor %}
-                </select>
-                <div class="input-group-append">
-                    <button type="button" onClick="generateGitIgnore()" class="btn btn-primary-outline">Create</button>
+            <div class="col-8 align-self-center text-center align-items-center">
+                <div class="row h-100 justify-content-center">
+                    <h1>VCE Exam Timetables</h1>
+                </div>
+                <div class="row h-100 justify-content-center">
+                    <p>download your subjects today!!</p>
+                </div>
+                <div class="row h-100 justify-content-center">
+                    <ol class="unsucky-list">
+                        <li>enter your subjects</li>
+                        <li>tap create</li>
+                        <li>watch as vce magically destroys your life</li>
+                    </ol>
+                </div>
+                <div class="row h-100 justify-content-center">
+                    <div class="input-group">
+                        <select class="form-control subject-selection" name="states[]" multiple="multiple">
+                            {% for exam, value in exams.items() %}
+                            <option value="{{ value }}">{{ exam }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="input-group-append">
+                            <button type="button" onClick="generateGitIgnore()" class="btn btn-primary-outline">Create</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row h-100 justify-content-center">
+                    <ul class="unsucky-list">
+                        <li>this doesn't work in facebook/fb messenger. tap open in safari/web browser.</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="row h-100 justify-content-center align-items-center">
-            <ul>
-                <li>this doesn't work in facebook/fb messenger. tap open in safari/web browser.</li>
-            </ul>
         </div>
     </div>
     <!-- Optional JavaScript -->
